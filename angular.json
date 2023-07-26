@@ -88,11 +88,15 @@
             ],
             "styles": [
               "src/styles.css"
+
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "fccf7dbc-fddf-437a-8cc5-24d01acc847d"
   }
 }
