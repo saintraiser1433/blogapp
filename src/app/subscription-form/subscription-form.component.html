@@ -8,23 +8,52 @@
         voluptatibus tempora eaque, quidem maiores reiciendis animi commodi id
         culpa odio? Dolorum, quisquam!
       </p>
-      <form action="" class="form-inline mb-5 mt-5">
-        <div class="form-group col-md-5">
+
+      <form
+        #form="ngForm"
+        (ngSubmit)="onSubmit(form.value)"
+        class="form-inline mb-5 mt-5"
+      >
+        <div class="form-group col-md-5" *ngIf="!isSubscribe">
           <input
             type="text"
             class="form-control shadow-effect"
             placeholder="Your name"
+            name="names"
+            #names="ngModel"
+            ngModel
+            [ngClass]="{ 'is-invalid': names.touched && names.invalid }"
+            required
           />
+          <div class="text-danger" *ngIf="names.touched && names.invalid">
+            <div *ngIf="names.errors?.['required']">Name is required</div>
+          </div>
         </div>
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-5" *ngIf="!isSubscribe">
           <input
             type="text"
             class="form-control shadow-effect"
             placeholder="Email Address"
+            name="email"
+            [ngClass]="{ 'is-invalid': email.touched && email.invalid }"
+            ngModel
+            #email="ngModel"
+            email
+            required
           />
+          <div class="text-danger" *ngIf="email.touched && email.invalid">
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['email']">
+              Please enter valid email address
+            </div>
+          </div>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-theme btn-info btn-block btn-sub">
+          <button
+            *ngIf="!isSubscribe"
+            class="btn btn-theme btn-info btn-block btn-sub"
+            [disabled]="form.invalid"
+          >
             SUBSCRIBE
           </button>
         </div>

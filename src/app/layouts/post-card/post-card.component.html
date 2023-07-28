@@ -1,21 +1,23 @@
-<div class="card shadow-effect">
+<div class="card shadow-effect" [routerLink]="['/post', data.id]">
   <img
-    src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+    src="{{ data.data.postImgPath }}"
     alt="post-image"
     class="card-img-top"
   />
   <div class="card-body">
-    <small class="bg-light text-danger text-center"> Design </small>
+    <small class="bg-light text-danger text-center">
+      {{ data.data.category.category }}
+    </small>
     <small class="bg-light text-success text-center ml-3"> Featured </small>
-    <small class="bg-light text-info text-center ml-3"> Views </small>
-    <h5 class="mt-1">HOW TO START A BLOG IN 2020 EDITED NEW CATEGORY</h5>
+    <small class="bg-light text-info text-center ml-3">
+      Views - {{ data.data.views }}
+    </small>
+    <h5 class="mt-1">{{ data.data.title }}</h5>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quos
-      sapiente dicta consequuntur ad. Sit vitae tempora nesciunt assumenda illo,
-      quos dolor beatae vero, quasi nam iusto, libero facere quas.
+      {{ data.data.excerpt }}
     </p>
     <small class="bg-light text-warning text-center ml-3">
-      LAST UPDATED - SEP 20, 2021
+      LAST UPDATED {{ data.data.createdAt.toMillis() | date }}
     </small>
   </div>
 </div>
